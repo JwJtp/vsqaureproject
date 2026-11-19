@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: "Cormorant Garamond";
+  --font-sans: "Inter";
+  --bg: #f5f4f0;
+  --panel: #ffffff;
+  --panel-2: #faf9f6;
+  --border: #e7e3da;
+  --text: #121826;
+  --muted: #6b7280;
+  --gold: #b8913f;
+  --gold-soft: #f4ead2;
+  --navy: #0b1222;
+  --ring: rgba(184, 145, 63, 0.35);
+  color-scheme: light;
+}
+.dark {
+  --bg: #070b16;
+  --panel: #0e1528;
+  --panel-2: #111a30;
+  --border: #1f2a45;
+  --text: #e8eaf0;
+  --muted: #8b93a7;
+  --gold: #d6b16a;
+  --gold-soft: rgba(214, 177, 106, 0.12);
+  --ring: rgba(214, 177, 106, 0.35);
+  color-scheme: dark;
+}
+
+html, body { background: var(--bg); color: var(--text); }
+body { font-family: var(--font-sans), system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+::selection { background: var(--gold-soft); }
+
+@layer components {
+  .card { @apply rounded-2xl border shadow-card; background: var(--panel); border-color: var(--border); }
+  .card-pad { @apply p-5; }
+  .muted { color: var(--muted); }
+  .hairline { border-color: var(--border); }
+  .panel-2 { background: var(--panel-2); }
+  .gold { color: var(--gold); }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-xl px-3.5 py-2 text-sm font-medium transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-4 active:scale-[.98]; --tw-ring-color: var(--ring); }
+  .btn-primary { @apply btn text-white shadow-sm; background: linear-gradient(135deg, #0b1222, #1a2541); }
+  .dark .btn-primary { background: linear-gradient(135deg, #cfa95a, #b8913f); color: #0b1222; }
+  .btn-primary:hover { filter: brightness(1.12); }
+  .btn-gold { @apply btn shadow-sm; background: linear-gradient(135deg, #dcc07c, #b8913f); color: #0b1222; }
+  .btn-gold:hover { filter: brightness(1.05); }
+  .btn-ghost { @apply btn border; border-color: var(--border); background: var(--panel); }
+  .btn-ghost:hover { background: var(--panel-2); }
+  .btn-danger { @apply btn border border-red-300 text-red-700 dark:border-red-900 dark:text-red-300; }
+  .btn-danger:hover { @apply bg-red-50 dark:bg-red-950/40; }
+  .btn-sm { @apply px-2.5 py-1.5 text-xs rounded-lg; }
+  .input { @apply w-full rounded-xl border px-3 py-2 text-sm outline-none transition focus:ring-4; background: var(--panel); border-color: var(--border); --tw-ring-color: var(--ring); }
+  .input:focus { border-color: var(--gold); }
+  .label { @apply mb-1 block text-xs font-medium uppercase tracking-wider; color: var(--muted); }
+  .badge { @apply inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide whitespace-nowrap; }
+  .table { @apply w-full text-sm; }
+  .table th { @apply px-3 py-2.5 text-left text-[11px] font-semibold uppercase tracking-wider; color: var(--muted); border-bottom: 1px solid var(--border); }
+  .table td { @apply px-3 py-2.5 align-middle; border-bottom: 1px solid var(--border); }
+  .table tbody tr { @apply transition-colors; }
+  .table tbody tr:hover { background: var(--panel-2); }
+  .h-display { font-family: var(--font-display), Georgia, serif; @apply font-semibold tracking-tight; }
+  .scroll-thin::-webkit-scrollbar { width: 6px; height: 6px; }
+  .scroll-thin::-webkit-scrollbar-thumb { background: var(--border); border-radius: 9px; }
+  .skeleton { @apply animate-pulse rounded-lg; background: var(--panel-2); }
+  .nav-link { @apply flex items-center gap-3 rounded-xl px-3 py-2 text-[13px] font-medium text-slate-300 transition hover:bg-white/5 hover:text-white; }
+  .nav-link.active { @apply text-white; background: linear-gradient(90deg, rgba(214,177,106,.18), rgba(214,177,106,.02)); box-shadow: inset 2px 0 0 #d6b16a; }
+}
+
+.recharts-cartesian-grid line { stroke: var(--border); }
+.recharts-text { fill: var(--muted); font-size: 11px; }
+.recharts-default-tooltip { background: var(--panel) !important; border: 1px solid var(--border) !important; border-radius: 12px; }
